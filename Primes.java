@@ -17,5 +17,13 @@ public class Primes {
                 }
             }   
         }
+        int count = 0;
+        for (int i = 2; i < arr.length; i ++) {
+            if(arr[i] == true) {
+                count++;
+            }  
+        }
+
+        System.out.println("There are " + count + " numebers between 2 and " + n);
     }
 }
