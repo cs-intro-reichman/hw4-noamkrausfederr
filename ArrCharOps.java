@@ -36,46 +36,98 @@ public class ArrCharOps {
     /** Returns the char value at the specified index. Assume that the array is non-empty.
      */
     public static char charAt(char[] arr, int index) {
-        // Replace the following statement with your code
-        return 0;
+        char c = ' ';
+        // I went over the array and when i reached the index that i 
+        // was given as input, i store the char in a variable and return it
+        for (int i = 0; i < arr.length; i ++) {
+            if (index == i) {
+                c = arr[i];
+            }
+        }
+        return c;
     }
 
     /** If the two arrays have the same value in every index, 
      *  returns true; Otherwise returns false.
      */
     public static boolean equals(char[] arr1, char[] arr2) {
-        // Replace the following statement with your code
-        return false;
+        boolean equ = true;
+        // If the array lengths are not the same, the arrays are immediately
+        // not equal to one another and therefore the function returns false
+        if (arr1.length != arr2.length) {
+            return false;
+        }
+
+        // If the arrays dont have the same value in the current index, the
+        // function will return false
+        for (int j = 0; j < arr2.length; j++) {
+            if (arr1[j] != arr2[j]) {
+                equ = false;
+                break;
+            }
+        }
+        return equ;
     }
 
     /** Returns the index within the given array of the first occurrence of the given character.
      *  If no such character is found, returns -1.
      */
     public static int indexOf(char[] arr, char ch) {
-        // Replace the following statement with your code
-        return -1;
+        int index = -1;
+        // I went over the array to see in which index it appears first,
+        // and i stored it in a variable index. When it reaches the index, it 
+        // stops the loop.
+        for (int i = 0; i < arr.length; i++) {
+            if(arr[i] == ch) {
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 
     /** Same as indexOf(char[], char), but starts the search in the given index.
      */
     public static int indexOf(char[] arr, char ch, int fromIndex) {
-        // Replace the following statement with your code
-        return -1;
+        int index = -1;
+        for (int i = fromIndex; i < arr.length; i++) {
+            if(arr[i] == ch) {
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 
     /** Returns the index within the given arr of the last occurrence of the given character.
      *  If no such character is found, returns -1.
      */
     public static int lastIndexOf(char[] arr, char ch) {
-        // Replace the following statement with your code
-        return -1;
+        int index = -1;
+         // I went over the array to see in which index it appears first,
+        // and i stored it in a variable index. When it reaches the index, 
+        // the loop continuesso that the last occurence is placed in the variable index
+        for (int i = 0; i < arr.length; i++) {
+            if(arr[i] == ch) {
+                index = i;
+            }
+        }
+        return index;
     }
 
     /* Returns an array which is the concatanation of the two given arrays.
     */
     public static char[] concat(char[] arr1, char[] arr2) {
-        // Replace the following statement with your code
-        return null;
+        char[] finalArr = new char[arr1.length + arr2.length];
+        for (int i = 0; i < arr1.length; i++) {
+            finalArr[i] = arr1[i];
+        }
+        int j = arr1.length;
+        for (int i = 0; i < arr2.length; i++) {
+            finalArr[j] = arr2[i];
+            j++;
+        }
+        return finalArr;
     }
 
     /** Returns a new array that can be described as a sub-array of this array.
@@ -84,8 +136,13 @@ public class ArrCharOps {
      *  characters containing the characters "urge".
      */     
     public static char[] subArray(char[] arr, int beginIndex, int endIndex) {
-        // Replace the following statement with your code
-        return null;
+        char[] subArr = new char[endIndex - beginIndex];
+        int j = 0;
+        for (int i = beginIndex; i < endIndex; i++) {
+            subArr[j] = arr[i];
+            j++;
+        }
+        return subArr;
     }
 
      /** Returns a single integer that represents the given array. This integer is sometimes 
@@ -96,8 +153,11 @@ public class ArrCharOps {
      *  The hash value of an empty array is zero.
      */
     public static long hashCode(char[] arr) {
-        // Replace the following statement with your code
-        return 0;
+        long hashNum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            hashNum += (long)(arr[i] * (Math.pow(7, arr.length + (i - 1))));
+        }
+        return hashNum;
     }
 
     /**
@@ -125,8 +185,48 @@ public class ArrCharOps {
      *         lexicographically greater than str2.
      *         return -2 if there is an error with the input.
      */
+
+    //System.out.println("Abcd", "a");
     public static int compareTo(String str1, String str2) {
-        // Replace the following statement with your code
-        return 0;
+        int length = 0;
+		if (str1.length() <= str2.length()) { 
+			length = str1.length();
+		} else {
+			length = str2.length();
+		}
+		char c1 = ' ';
+		char c2 = ' ';
+		for (int i = 0; i < length; i++) {
+			c1 = str1.charAt(i);
+			c2 = str2.charAt(i);
+			if (c1 != c2) {
+				if (((c2 >= 97) && (c2 <= 122)) && (((c1 >= 65) && (c1 <= 90)))) {
+					return 1;
+				} else if (((c1 >= 97) && (c1 <= 122)) && (((c2 >= 65) && (c2 <= 90)))) {
+					return -1;
+				} else if (((c1 >= 97) && (c1 <= 122)) && (((c2 >= 97) && (c2 <= 122)))) {
+					if (c1 < c2) {
+						return -1;
+					} else {
+						return 1;
+					}
+				} else if (((c1 >= 65) && (c1 <= 90)) && ((c2 >= 65) && (c2 <= 90))) {
+					if (c1 < c2) {
+						return -1;
+					} else {
+						return 1;
+					}
+				}   
+                }
+            }
+
+		if (str1.length() == str2.length()) {
+			return 0;
+		} else if (str1.length() > str2.length()) {
+			return 1;
+        } else if (str1.length() < str2.length()) {
+            return -1;
+        }
+        return -2;
     }
 }
