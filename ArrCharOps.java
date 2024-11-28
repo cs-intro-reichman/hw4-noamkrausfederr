@@ -90,6 +90,8 @@ public class ArrCharOps {
      */
     public static int indexOf(char[] arr, char ch, int fromIndex) {
         int index = -1;
+        // I start my loop from the index i recieved as input and check in which index the characters is
+        // in the array
         for (int i = fromIndex; i < arr.length; i++) {
             if(arr[i] == ch) {
                 index = i;
@@ -119,6 +121,8 @@ public class ArrCharOps {
     */
     public static char[] concat(char[] arr1, char[] arr2) {
         char[] finalArr = new char[arr1.length + arr2.length];
+        // I first add the characters from the first string into my new array and then add
+        // in the next loop the characters from the second string
         for (int i = 0; i < arr1.length; i++) {
             finalArr[i] = arr1[i];
         }
@@ -138,6 +142,7 @@ public class ArrCharOps {
     public static char[] subArray(char[] arr, int beginIndex, int endIndex) {
         char[] subArr = new char[endIndex - beginIndex];
         int j = 0;
+        // I start my loop at the  beginIndex until the endIndex - 1, and add the characters into my new array
         for (int i = beginIndex; i < endIndex; i++) {
             subArr[j] = arr[i];
             j++;
@@ -154,6 +159,7 @@ public class ArrCharOps {
      */
     public static long hashCode(char[] arr) {
         long hashNum = 0;
+        // I use the given formula to calculate the hashcode of the array
         for (int i = 0; i < arr.length; i++) {
             hashNum += (long)(arr[i] * (Math.pow(7, arr.length - (i + 1))));
         }
@@ -188,9 +194,12 @@ public class ArrCharOps {
 
     public static int compareTo(String str1, String str2) {
         int length = 0;
+        // If one of the strings is empty the ouput is -2
         if ((str1.length() == 0) || (str2.length() == 0)) {
             return -2;
         }
+
+        // Im taking the length of the shorter string for my loop
 		if (str1.length() <= str2.length()) { 
 			length = str1.length();
 		} else {
@@ -198,9 +207,12 @@ public class ArrCharOps {
 		}
 		char c1 = ' ';
 		char c2 = ' ';
+
 		for (int i = 0; i < length; i++) {
 			c1 = str1.charAt(i);
 			c2 = str2.charAt(i);
+            // If the characters in the current index aren't equal, I immeately check which one is smaller
+            // and return the result of the lexicographically smaller string.
 			if (c1 != c2) {
                 if (c1 < c2) {
                     return -1;
@@ -210,6 +222,8 @@ public class ArrCharOps {
 			}   
         }
 
+        // By this point i know that all the characters in the strings are equal in the same indexes, so i
+        // check which one is the lexicographically smaller string by their lengths.
 		if (str1.length() == str2.length()) {
 			return 0;
 		} else if (str1.length() > str2.length()) {
