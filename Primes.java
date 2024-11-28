@@ -18,12 +18,14 @@ public class Primes {
             }   
         }
         int count = 0;
+        System.out.println("Prime numbers up to " + n + ":");
         for (int i = 2; i < arr.length; i ++) {
             if(arr[i] == true) {
+                System.out.println(i);
                 count++;
             }  
         }
-
-        System.out.println("There are " + count + " primes between 2 and " + n);
+        double percentage = ((double)count/n)*100;
+        System.out.println("There are " + count + " primes between 2 and " + n + " (" + (int)(percentage) + "% are primes)");
     }
 }
