@@ -155,7 +155,7 @@ public class ArrCharOps {
     public static long hashCode(char[] arr) {
         long hashNum = 0;
         for (int i = 0; i < arr.length; i++) {
-            hashNum += (long)(arr[i] * (Math.pow(7, arr.length + (i - 1))));
+            hashNum += (long)(arr[i] * (Math.pow(7, arr.length - (i + 1))));
         }
         return hashNum;
     }
@@ -186,9 +186,11 @@ public class ArrCharOps {
      *         return -2 if there is an error with the input.
      */
 
-    //System.out.println("Abcd", "a");
     public static int compareTo(String str1, String str2) {
         int length = 0;
+        if ((str1.length() == 0) || (str2.length() == 0)) {
+            return -2;
+        }
 		if (str1.length() <= str2.length()) { 
 			length = str1.length();
 		} else {
@@ -200,25 +202,13 @@ public class ArrCharOps {
 			c1 = str1.charAt(i);
 			c2 = str2.charAt(i);
 			if (c1 != c2) {
-				if (((c2 >= 97) && (c2 <= 122)) && (((c1 >= 65) && (c1 <= 90)))) {
-					return 1;
-				} else if (((c1 >= 97) && (c1 <= 122)) && (((c2 >= 65) && (c2 <= 90)))) {
-					return -1;
-				} else if (((c1 >= 97) && (c1 <= 122)) && (((c2 >= 97) && (c2 <= 122)))) {
-					if (c1 < c2) {
-						return -1;
-					} else {
-						return 1;
-					}
-				} else if (((c1 >= 65) && (c1 <= 90)) && ((c2 >= 65) && (c2 <= 90))) {
-					if (c1 < c2) {
-						return -1;
-					} else {
-						return 1;
-					}
-				}   
+                if (c1 < c2) {
+                    return -1;
+                } else {
+                    return 1;
                 }
-            }
+			}   
+        }
 
 		if (str1.length() == str2.length()) {
 			return 0;
