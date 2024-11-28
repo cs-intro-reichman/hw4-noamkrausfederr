@@ -24,6 +24,6 @@ public class Primes {
             }  
         }
 
-        System.out.println("There are " + count + " numebers between 2 and " + n);
+        System.out.println("There are " + count + " primes between 2 and " + n);
     }
 }
